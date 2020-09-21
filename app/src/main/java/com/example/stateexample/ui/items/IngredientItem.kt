@@ -1,7 +1,7 @@
-package com.example.stateexample.items
+package com.example.stateexample.ui.items
 
 import com.example.stateexample.R
-import com.example.stateexample.data.Ingredient
+import com.example.stateexample.data.dto.Ingredient
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import com.xwray.groupie.kotlinandroidextensions.Item
 import kotlinx.android.synthetic.main.item_description.*

@@ -1,9 +1,11 @@
-package com.example.stateexample
+package com.example.stateexample.ui.viewmodel
 
+import com.example.stateexample.data.repository.BeerRepository
+import com.example.stateexample.ui.state.BeerViewState
 import io.uniflow.androidx.flow.AndroidDataFlow
 import java.lang.Exception
 
-class BeerDataFlow (
+class BeerViewModel (
     private val repository: BeerRepository
 ) : AndroidDataFlow() {
 

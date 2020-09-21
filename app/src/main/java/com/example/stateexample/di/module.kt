@@ -1,10 +1,9 @@
 package com.example.stateexample.di
 
-import com.example.stateexample.BeerDataFlow
-import com.example.stateexample.BeerFragment
-import com.example.stateexample.BeerRepository
-import com.example.stateexample.BeerService
-import org.koin.androidx.viewmodel.dsl.viewModel
+import com.example.stateexample.ui.viewmodel.BeerViewModel
+import com.example.stateexample.ui.fragment.BeerFragment
+import com.example.stateexample.data.repository.BeerRepository
+import com.example.stateexample.data.service.BeerService
 import org.koin.dsl.module
 
 val appModule = module {
@@ -15,7 +14,7 @@ val appModule = module {
         retrofit.create(BeerService::class.java)
     }
     factory {
-        BeerDataFlow(repository = get())
+        BeerViewModel(repository = get())
     }
     factory {
         BeerFragment()

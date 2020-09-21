@@ -1,7 +1,7 @@
-package com.example.stateexample.data
+package com.example.stateexample.data.dto
 
 data class Beer(
-    val title: String = "",
+    val name: String = "",
     val description: String = "",
     val brewers_tips: String = "",
     val food_pairing: List<String> = emptyList(),

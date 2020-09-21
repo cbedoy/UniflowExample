@@ -1,4 +1,4 @@
-package com.example.stateexample.items
+package com.example.stateexample.ui.items
 
 import com.example.stateexample.R
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder

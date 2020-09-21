@@ -1,4 +1,4 @@
-package com.example.stateexample.data
+package com.example.stateexample.data.dto
 
 data class Ingredient (
     val name: String = "",

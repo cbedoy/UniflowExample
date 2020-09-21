@@ -1,6 +1,6 @@
-package com.example.stateexample
+package com.example.stateexample.ui.state
 
-import com.example.stateexample.data.Beer
+import com.example.stateexample.data.dto.Beer
 import io.uniflow.core.flow.data.UIState
 
 sealed class BeerViewState : UIState(){

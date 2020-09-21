@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:background="#FFF"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -14,7 +16,7 @@
         android:layout_weight="1"
         android:fontFamily="sans-serif"
         android:padding="8dp"
-        android:text="Title"
+        tools:text="Title"
         android:textColor="#333"
         android:textSize="15sp" />
 
@@ -26,7 +28,7 @@
         android:fontFamily="sans-serif"
         android:gravity="right"
         android:padding="8dp"
-        android:text="Title"
+        tools:text="Description"
         android:textColor="#666"
         android:textSize="15sp" />
 </LinearLayout>

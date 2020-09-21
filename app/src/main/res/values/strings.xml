@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">StateExample</string>
+    <string name="app_name">Beer UniFlow - State</string>
+    <string name="credit">Made with 🌮🌮 by Carlos Bedoy #mexicanguy</string>
+    <string name="error_title">Something is technical wrong</string>
+    <string name="error_message">Thanks for noticing - we\'re going to fix it up and have things back to normal soon</string>
+    <string name="ingredients">Ingredients:</string>
+    <string name="tips">Tips:</string>
 </resources>

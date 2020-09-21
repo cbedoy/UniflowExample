@@ -2,7 +2,7 @@ package com.example.stateexample
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_main.*
+import com.example.stateexample.ui.fragment.BeerFragment
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {

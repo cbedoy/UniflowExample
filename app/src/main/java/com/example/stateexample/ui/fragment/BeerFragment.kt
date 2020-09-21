@@ -1,4 +1,4 @@
-package com.example.stateexample
+package com.example.stateexample.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,18 +7,20 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import coil.api.load
-import com.example.stateexample.data.Beer
-import com.example.stateexample.items.IngredientItem
-import com.example.stateexample.items.TitleItem
+import com.example.stateexample.*
+import com.example.stateexample.common.*
+import com.example.stateexample.data.dto.Beer
+import com.example.stateexample.ui.items.IngredientItem
+import com.example.stateexample.ui.state.BeerViewState
+import com.example.stateexample.ui.viewmodel.BeerViewModel
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.Item
 import com.xwray.groupie.kotlinandroidextensions.GroupieViewHolder
 import io.uniflow.androidx.flow.onStates
 import kotlinx.android.synthetic.main.fragment_beer_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class BeerFragment : Fragment() {
-    private val dataFlow : BeerDataFlow by viewModel()
+    private val viewModel : BeerViewModel by viewModel()
 
     private val hopsAdapter = GroupAdapter<GroupieViewHolder>()
     private val maltAdapter = GroupAdapter<GroupieViewHolder>()
@@ -34,18 +36,40 @@ class BeerFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        onStates(dataFlow){ state ->
+        hopsCard.gone()
+        maltCard.gone()
+        beerCard.gone()
+        tipsTitleView.gone()
+        ingredientsView.gone()
+
+        errorTitleView.gone()
+        errorMessageView.gone()
+
+
+        onStates(viewModel){ state ->
             when(state){
                 is BeerViewState.Init -> {
                     progressBar.visible()
-                    malt_recycler_view.gone()
-                    hop_recycler_view.gone()
+
+                    hopsCard.gone()
+                    maltCard.gone()
+
                     beerCard.gone()
                 }
                 is BeerViewState.Failed -> {
+                    hopsCard.gone()
+                    maltCard.gone()
+                    beerCard.gone()
 
+                    progressBar.gone()
+
+                    errorTitleView.visible()
+                    errorMessageView.visible()
                 }
                 is BeerViewState.GivenBeer -> {
+                    errorTitleView.gone()
+                    errorMessageView.gone()
+
                     reloadBeerDetail(state.beer)
                 }
             }
@@ -56,18 +80,21 @@ class BeerFragment : Fragment() {
         malt_recycler_view.adapter = maltAdapter
         hop_recycler_view.adapter = hopsAdapter
 
-        dataFlow.getRandomBeer()
+        creditView.setOnClickListener {
+            it.open("https://github.com/cbedoy")
+        }
+
+        viewModel.getRandomBeer()
     }
 
     private fun reloadBeerDetail(beer: Beer) {
-        titleView.text = beer.title
-        descriptionView.text = beer.description
+        titleView.reloadText(beer.name)
+        descriptionView.reloadText(beer.description)
 
-        tipsView.text = beer.brewers_tips
+        tipsView.reloadText(beer.brewers_tips)
         previewView.load(beer.image_url){
             crossfade(true)
         }
-
 
         hopsAdapter.addAll(beer.ingredients.hops.map {
             IngredientItem(it)
@@ -77,9 +104,12 @@ class BeerFragment : Fragment() {
             IngredientItem(it)
         })
 
-        malt_recycler_view.visible()
-        hop_recycler_view.visible()
+        hopsCard.visibleIfTrueElseGone(condition = hopsAdapter.groupCount > 0)
+        maltCard.visibleIfTrueElseGone(condition = maltAdapter.groupCount > 0)
         beerCard.visible()
+
+        tipsTitleView.visible()
+        ingredientsView.visible()
 
         progressBar.gone()
     }

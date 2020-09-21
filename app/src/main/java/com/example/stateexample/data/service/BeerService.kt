@@ -1,6 +1,6 @@
-package com.example.stateexample
+package com.example.stateexample.data.service
 
-import com.example.stateexample.data.Beer
+import com.example.stateexample.data.dto.Beer
 import retrofit2.http.GET
 
 interface BeerService {
