@@ -18,7 +18,7 @@ gradlew assembleDebug
 ```
 
 # How it looks
-
+![](https://media.giphy.com/media/WdkzVlxbVsbIbezcJw/giphy.gif)
 
 
 
